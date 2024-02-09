@@ -10,4 +10,12 @@ router.post("/add",async(req,res)=>{
         status:"success"
     })
 })
+
+router.get("/viewall",async(req,res)=>{
+    let data=await postModel.find()
+    .populate("userId","name age pincode address email -_id")
+    .exec()
+    res.json(data)
+})
+
 module.exports=router
